@@ -1,12 +1,33 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { PageAuthorizationService } from './authorization.service';
+import { AuthenticationService } from './authentication.service';
+import { AuthInterceptor } from './auth-interceptor.service';
+import { UtilityModule } from '../utility/utility.module';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    UtilityModule
+  ],
+  providers: [
+    PageAuthorizationService,
+    AuthenticationService
   ]
 })
-export class CoreModule { }
+export class CoreModule { 
+  static forRoot() {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: EskaLoggingInterceptor, multi: true },
+        PageAuthorizationService,
+        AuthenticationService
+      ]
+    };
+  }
+}

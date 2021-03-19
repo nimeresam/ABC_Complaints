@@ -10,10 +10,6 @@ const routes: Routes = [
     component: ComplaintsComponent,
     canLoad: [AuthenticationService],
     canActivate: [PageAuthorizationService]
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
   }
 ];
 

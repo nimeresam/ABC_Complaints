@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ComplaintsRoutingModule } from './complaints-routing.module';
 import { ComplaintsComponent } from './complaints.component';
-import { CoreModule } from '../core/core.module';
+import { UtilityModule } from '../utility/utility.module';
 
 
 @NgModule({
   declarations: [ComplaintsComponent],
   imports: [
-    CommonModule,
-    ComplaintsRoutingModule,
-    CoreModule
+    UtilityModule,
+    ComplaintsRoutingModule
   ]
 })
 export class ComplaintsModule { }

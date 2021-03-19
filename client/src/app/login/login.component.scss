@@ -1,0 +1,33 @@
+.card-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+
+    .card {
+        margin: auto;
+        min-width: 350px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            .agreement {
+                margin-bottom: 8px;
+            }
+        }
+
+        span.anchor-inside {
+            display: block;
+            margin-top: 14px;
+
+            a {
+                font-weight: 500;
+                color: blue;
+                cursor: pointer;
+            }
+        }
+    }
+}

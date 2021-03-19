@@ -1,5 +1,57 @@
-<mat-card>
-    <mat-card-title>
-        Hello
-    </mat-card-title>
-</mat-card>
+<div class="card-container">
+    <mat-card class="card" [ngSwitch]="action">
+        <mat-card-title>
+            {{ action | titlecase }}
+        </mat-card-title>
+        <mat-card-content *ngSwitchCase="'sign in'">
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput required placeholder="user@example.com" type="email" formControlName="email">
+                    <mat-icon matPrefix>email</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput required [type]="showPassword? 'text': 'password'" formControlName="password">
+                    <mat-icon matPrefix> {{showPassword? 'lock_open': 'lock'}} </mat-icon>
+                    <mat-icon matSuffix color="primary" style="cursor: pointer;" (click)="showPassword = !showPassword"> {{showPassword? 'visibility_off': 'visibility'}} </mat-icon>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
+                    Submit
+                </button>
+            </form>
+            <span class="anchor-inside">
+                Don't have account? 
+                <a (click)="changeAction()">Sign Up</a>
+            </span>
+        </mat-card-content>
+        <mat-card-content *ngSwitchCase="'register'">
+            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput required placeholder="ex: Mohammad Naser" type="text" formControlName="name">
+                    <mat-icon matPrefix>face</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput required placeholder="user@example.com" type="email" formControlName="email">
+                    <mat-icon matPrefix>email</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput required [type]="showPassword? 'text': 'password'" formControlName="password">
+                    <mat-icon matPrefix> {{showPassword? 'lock_open': 'lock'}} </mat-icon>
+                    <mat-icon matSuffix color="primary" style="cursor: pointer;" (click)="showPassword = !showPassword"> {{showPassword? 'visibility_off': 'visibility'}} </mat-icon>
+                </mat-form-field>
+                <mat-checkbox class="agreement" [checked]="agreement" (change)="agreement = !agreement">I agree to the Terms and Conditions</mat-checkbox>
+                <button mat-raised-button color="primary" [disabled]="!agreement || registerForm.invalid">
+                    Submit
+                </button>
+            </form>
+            <span class="anchor-inside">
+                Have an account? 
+                <a (click)="changeAction()">Sign In</a>
+            </span>
+        </mat-card-content>
+    </mat-card>
+</div>

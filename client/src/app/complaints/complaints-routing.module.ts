@@ -6,10 +6,15 @@ import { ComplaintsComponent } from './complaints.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'portal',
     component: ComplaintsComponent,
     canLoad: [AuthenticationService],
     canActivate: [PageAuthorizationService]
+  }, 
+  {
+    path: '',
+    redirectTo: 'portal',
+    pathMatch: 'full'
   }
 ];
 

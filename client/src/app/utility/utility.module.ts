@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderService } from './services/loader.service';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   providers: [
     LoaderService

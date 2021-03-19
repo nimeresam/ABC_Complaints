@@ -47,6 +47,20 @@ body {
     }
 }
 
+.info-line {
+    margin-bottom: 6px;
+
+    .label {
+        width: 30%;
+        font-weight: bold;
+    }
+    
+    .value {
+        width: 70%;
+        word-break: break-word;
+    }
+}
+
 .row {
     display: flex;
     flex-direction: row;

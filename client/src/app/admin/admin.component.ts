@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
     this.displayedColumns = ['index', 'title', 'creationDate', 'status', 'opts'];
 
     this.dataSource = [
-      { title: 'Bad treatment', creationDate: new Date(), status: STATUS.pending }
+      { title: 'Bad treatment', description: 'faksjdfeasjdflasjdlfkjasdklfjasdlfjasdlfjadslfjladsfjladsfjladsjfl;adsjfl;asdjflasjdfl;asjdflasjdflasjdfl lasdjflasdjfljasdlfjasdfljadslfjdsfj ls\nlasdjflkasjdflasjdflajs', creationDate: new Date(), status: STATUS.pending }
     ]
   }
 
@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
   update(index: number) {
     let complaint = this.dataSource[index];
     this.dialog.open(ComplaintDialogComponent, {
-      width: '700px',
+      width: '750px',
       data: complaint
     }).afterClosed().subscribe(
       (res: IComplaint) => {

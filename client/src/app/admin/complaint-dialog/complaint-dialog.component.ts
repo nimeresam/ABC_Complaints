@@ -16,7 +16,7 @@ export class ComplaintDialogComponent implements OnInit {
   statusList: STATUS[];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: IComplaint,
+    @Inject(MAT_DIALOG_DATA) public data: IComplaint,
     formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<ComplaintDialogComponent>
   ) { 

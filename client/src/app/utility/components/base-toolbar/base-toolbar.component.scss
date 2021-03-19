@@ -1,0 +1,12 @@
+.toolbar {
+    .action {
+        display: inline-flex;
+        margin-left: auto;
+
+        .welcome {
+            font-size: 14px;
+            margin: auto;
+            font-weight: 400;
+        }
+    }
+}

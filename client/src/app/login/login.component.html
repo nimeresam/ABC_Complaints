@@ -28,8 +28,8 @@
         <mat-card-content *ngSwitchCase="'register'">
             <form [formGroup]="registerForm" (ngSubmit)="submit()">
                 <mat-form-field appearance="outline">
-                    <mat-label>Full Name</mat-label>
-                    <input matInput required placeholder="ex: Mohammad Naser" type="text" formControlName="name">
+                    <mat-label>Name</mat-label>
+                    <input matInput required placeholder="ex: mohammad" type="text" formControlName="name">
                     <mat-icon matPrefix>face</mat-icon>
                 </mat-form-field>
                 <mat-form-field appearance="outline">

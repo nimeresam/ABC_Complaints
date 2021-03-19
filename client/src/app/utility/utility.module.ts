@@ -4,10 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderService } from './services/loader.service';
 import { MaterialModule } from './material/material.module';
+import { BaseToolbarComponent } from './components/base-toolbar/base-toolbar.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BaseToolbarComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -18,7 +21,9 @@ import { MaterialModule } from './material/material.module';
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    BaseToolbarComponent,
   ],
   providers: [
     LoaderService

@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
     formBuilder: FormBuilder,
     private service: LoginService
   ) {
+    // to determine form group to use
     this.action = 'sign in';
+    // to save user role
     this.role = <'client' | 'admin'>location.pathname.split('/')[1];
 
     this.loginForm = formBuilder.group({
@@ -39,20 +41,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /**
+   * change formGroup between sign in or sign up
+   */
   changeAction() {
     this.showPassword = false;
     this.agreement = false;
     this.action = this.action == 'sign in' ? 'register' : 'sign in';
   }
 
+  /**
+   * post request and redirect on sign in or sign up
+   */
   submit() {
     let subject: Observable<any>;
+    // determine which API to use
     switch(this.action) {
       case 'sign in':
         subject = this.service.login(this.role, this.loginForm.value);
       case 'register':
         subject = this.service.register(this.role, this.registerForm.value);
     }
+    // call API and wait data
     subject.subscribe(
       res => {
 

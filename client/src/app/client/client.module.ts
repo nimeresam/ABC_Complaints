@@ -3,13 +3,20 @@ import { UtilityModule } from '../utility/utility.module';
 
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './client.component';
+import { ComplaintDialogComponent } from './complaint-dialog/complaint-dialog.component';
 
 
 @NgModule({
-  declarations: [ClientComponent],
+  declarations: [
+    ClientComponent, 
+    ComplaintDialogComponent
+  ],
   imports: [
     UtilityModule,
     ClientRoutingModule
+  ],
+  entryComponents: [
+    ComplaintDialogComponent
   ]
 })
 export class ClientModule { }

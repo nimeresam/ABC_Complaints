@@ -12,7 +12,7 @@ export class AdminComponent implements OnInit {
   displayedColumns: string[];
 
   constructor() { 
-    this.displayedColumns = ['index', 'title', 'creationDate', 'status'];
+    this.displayedColumns = ['index', 'title', 'creationDate', 'status', 'opts'];
 
     this.dataSource = [
       { title: 'Bad treatment', creationDate: new Date(), status: STATUS.pending }

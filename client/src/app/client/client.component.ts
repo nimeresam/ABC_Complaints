@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { IComplaint } from '../utility/models/complaint.interface';
 import { STATUS } from '../utility/models/status.enum';
+import { ComplaintDialogComponent } from './complaint-dialog/complaint-dialog.component';
 
 @Component({
   selector: 'app-client',
@@ -11,7 +15,9 @@ export class ClientComponent implements OnInit {
   dataSource: any[];
   displayedColumns: string[];
 
-  constructor() { 
+  constructor(
+    private dialog: MatDialog
+  ) { 
     this.displayedColumns = ['index', 'title', 'creationDate', 'status'];
 
     this.dataSource = [
@@ -20,6 +26,22 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * create new complaint
+   */
+  create() {
+    this.dialog.open(ComplaintDialogComponent, {
+      width: '400px',
+    }).afterClosed().subscribe(
+      (res: IComplaint) => {
+
+      },
+      err => {
+
+      }
+    )
   }
 
 }

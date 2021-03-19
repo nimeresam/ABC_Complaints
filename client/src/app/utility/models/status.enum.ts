@@ -1,5 +1,5 @@
 export enum STATUS {
-    pending,
-    resolved,
-    dismissed
+    pending = 'pending',
+    resolved = 'resolved',
+    dismissed = 'dismissed'
 }

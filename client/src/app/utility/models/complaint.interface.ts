@@ -1,6 +1,7 @@
 import { STATUS } from "./status.enum";
 
 export interface IComplaint {
+    id: string;
     username: string;
     title: string;
     description: string;

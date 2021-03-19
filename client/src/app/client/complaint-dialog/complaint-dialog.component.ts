@@ -19,7 +19,7 @@ export class ComplaintDialogComponent implements OnInit {
   ) { 
     this.complaintForm = formBuilder.group({
       title: ['', Validators.required],
-      describtion: ['', Validators.required],
+      description: ['', Validators.required],
       status: [STATUS.pending]
     });
   }

@@ -10,4 +10,5 @@ export interface IComplaint {
     createdBy: string;
     changeDate: Date;
     changedBy: string;
+    notes: string;
 }

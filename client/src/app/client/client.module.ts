@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CoreModule } from '../core/core.module';
 import { UtilityModule } from '../utility/utility.module';
 
 import { ClientRoutingModule } from './client-routing.module';
@@ -13,7 +14,8 @@ import { ComplaintDialogComponent } from './complaint-dialog/complaint-dialog.co
   ],
   imports: [
     UtilityModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    CoreModule
   ],
   entryComponents: [
     ComplaintDialogComponent

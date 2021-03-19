@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { IComplaint } from '../utility/models/complaint.interface';
 import { STATUS } from '../utility/models/status.enum';
@@ -16,12 +17,15 @@ export class ClientComponent implements OnInit {
   displayedColumns: string[];
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { 
     this.displayedColumns = ['index', 'title', 'creationDate', 'status'];
 
     this.dataSource = [
-      { title: 'Bad treatment', creationDate: new Date(), status: STATUS.pending }
+      { title: 'Bad treatment', creationDate: new Date(), status: STATUS.pending },
+      { title: 'Bad treatment', creationDate: new Date(), status: STATUS.resolved },
+      { title: 'Bad treatment', creationDate: new Date(), status: STATUS.dismissed }
     ]
   }
 
@@ -36,10 +40,11 @@ export class ClientComponent implements OnInit {
       width: '400px',
     }).afterClosed().subscribe(
       (res: IComplaint) => {
+        if (!res) return;
+        res.creationDate = new Date();
+        this.dataSource = this.dataSource.concat(res);
 
-      },
-      err => {
-
+        this.snackBar.open('Complaint sent successfully, will back to you soon.', 'OK');
       }
     )
   }

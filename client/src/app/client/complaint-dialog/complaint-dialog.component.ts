@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { STATUS } from '../../utility/models/status.enum';
 
 @Component({
-  selector: 'app-complaint-dialog',
+  selector: 'client-complaint-dialog',
   templateUrl: './complaint-dialog.component.html',
   styleUrls: ['./complaint-dialog.component.scss']
 })

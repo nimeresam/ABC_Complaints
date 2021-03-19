@@ -4,8 +4,17 @@ import { ClientComponent } from './client.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'portal',
     component: ClientComponent
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: '',
+    redirectTo: 'portal',
+    pathMatch: 'full'
   }
 ];
 

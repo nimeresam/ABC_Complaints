@@ -1,1 +1,27 @@
-<p>complaint-dialog works!</p>
+<h1 mat-dialog-title>Complaint Info</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col w-50">
+
+        </div>
+        <form [formGroup]="complaintForm" class="col w-50">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select required formControlName="status">
+                    <mat-option *ngFor="let status of statusList" [value]="status">
+                        {{ status | titlecase }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Notes</mat-label>
+                <textarea matInput required formControlName="notes" rows="6"></textarea>
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close style="margin-left: auto;">Cancel</button>
+    <button mat-raised-button [mat-dialog-close]="complaintForm.value" color="primary"
+        [disabled]="complaintForm.invalid">Save</button>
+</div>

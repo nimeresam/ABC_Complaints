@@ -5,11 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderService } from './services/loader.service';
 import { MaterialModule } from './material/material.module';
 import { BaseToolbarComponent } from './components/base-toolbar/base-toolbar.component';
+import { StatusColorPipe } from './pipes/status-color.pipe';
 
 
 @NgModule({
   declarations: [
-    BaseToolbarComponent
+    BaseToolbarComponent,
+    StatusColorPipe
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,8 @@ import { BaseToolbarComponent } from './components/base-toolbar/base-toolbar.com
     ReactiveFormsModule,
 
     BaseToolbarComponent,
+
+    StatusColorPipe
   ],
   providers: [
     LoaderService

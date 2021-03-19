@@ -4,8 +4,17 @@ import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'portal',
     component: AdminComponent
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: '',
+    redirectTo: 'portal',
+    pathMatch: 'full'
   }
 ];
 

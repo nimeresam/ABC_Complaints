@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>Complaint Form</h1>
 <div mat-dialog-content>
   <form [formGroup]="complaintForm">
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
         <input matInput required formControlName="title">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Describtion</mat-label>
         <textarea matInput required formControlName="describtion" rows="6"></textarea>
       </mat-form-field>
@@ -13,5 +13,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close style="margin-left: auto;">Cancel</button>
-  <button mat-raised-button color="primary">Save</button>
+  <button mat-raised-button [mat-dialog-close]="complaintForm.value" color="primary" [disabled]="complaintForm.invalid">Save</button>
 </div>

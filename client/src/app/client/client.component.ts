@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { IComplaint } from '../utility/models/complaint.interface';
 import { STATUS } from '../utility/models/status.enum';
 import { ComplaintDialogComponent } from './complaint-dialog/complaint-dialog.component';
+import { ComplaintInfoComponent } from './complaint-info/complaint-info.component';
 
 @Component({
   selector: 'app-client',
@@ -20,7 +21,7 @@ export class ClientComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) { 
-    this.displayedColumns = ['index', 'title', 'creationDate', 'status'];
+    this.displayedColumns = ['index', 'title', 'creationDate', 'status', 'opts'];
 
     this.dataSource = [
       { title: 'Bad treatment', creationDate: new Date(), status: STATUS.pending },
@@ -47,6 +48,16 @@ export class ClientComponent implements OnInit {
         this.snackBar.open('Complaint sent successfully, will back to you soon.', 'OK');
       }
     )
+  }
+
+  /**
+   * view complaint details
+   */
+  viewInfo(complaint: IComplaint) {
+    this.dialog.open(ComplaintInfoComponent, {
+      width: '750px',
+      data: complaint
+    })
   }
 
 }

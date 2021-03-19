@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,14 @@ export class LoginComponent implements OnInit {
   action: 'sign in' | 'register';
   showPassword: boolean;
   agreement: boolean;
+  role: 'client' | 'admin';
 
   constructor(
-    formBuilder: FormBuilder
+    formBuilder: FormBuilder,
+    private service: LoginService
   ) {
     this.action = 'sign in';
+    this.role = <'client' | 'admin'>location.pathname.split('/')[1];
 
     this.loginForm = formBuilder.group({
       email: ['', Validators.required],
@@ -32,8 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   changeAction() {
     this.showPassword = false;
@@ -42,7 +46,21 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    let subject: Observable<any>;
+    switch(this.action) {
+      case 'sign in':
+        subject = this.service.login(this.role, this.loginForm.value);
+      case 'register':
+        subject = this.service.register(this.role, this.registerForm.value);
+    }
+    subject.subscribe(
+      res => {
 
+      },
+      err => {
+        
+      }
+    )
   }
 
 }

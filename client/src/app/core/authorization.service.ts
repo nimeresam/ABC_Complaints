@@ -13,7 +13,7 @@ export class AuthorizationService implements CanActivate {
    * @returns {boolean} Authorized user or not */
   canActivate(): boolean {
     // check if user can access this page
-    let page = location.pathname.split('/')[1] || 'client';
+    let page = location.pathname.split('/')[1];
     let role = localStorage.getItem(IAuthKeys.ROLE);
     if (page != role) {
       setTimeout(() => this.router.navigate(['/' + role]))

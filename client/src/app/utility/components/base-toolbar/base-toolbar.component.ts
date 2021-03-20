@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IAuthKeys } from '../../models/auth.enum';
 
 @Component({
   selector: 'base-toolbar',
@@ -13,8 +14,7 @@ export class BaseToolbarComponent implements OnInit {
   constructor(
     private router: Router
   ) { 
-    // TODO: get from local storage
-    this.username = 'Nimer';
+    this.username = localStorage.getItem(IAuthKeys.NAME);
   }
 
   ngOnInit(): void {

@@ -31,7 +31,7 @@ function verifyToken(req, res, next) {
 
         if (err) return res.status(401).send('Faild to authenticate token.');
         // set username property to be used 
-        req.username = decoded.username;
+        req.user_id = decoded.user_id;
         req.user_role = decoded.user_role;
         // continue request
         next();

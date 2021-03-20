@@ -15,8 +15,10 @@ class Complaints {
      * just to simulate getting data from data base
      * @returns 
      */
-    async get() {
-        return this._dataDict._list;
+    async get(userId, role) {
+        return (role == 'admin') ?
+            this._dataDict._list:
+            this._dataDict._list.filter(complaint => complaint.createdBy == userId);
     }
 
     /**
@@ -25,13 +27,13 @@ class Complaints {
      * @param {object} complaint 
      * @returns {object} updated complaint
      */
-    async update(complaint, username) {
+    async update(complaint, userId) {
         // check if complaint exists
         let current = this._dataDict[complaint.id];
         // throw an error if complaint not exist
         if (current == undefined) throw new Error(`Failed to find Complaint with id: ${complaint.id}`);
         complaint.changeDate = new Date();
-        complaint.changeBy = username;
+        complaint.changeBy = userId;
         // to keep current instance
         return Object.assign(current, complaint);
 
@@ -41,12 +43,12 @@ class Complaints {
      * @async 
      * create new complaint
      * @param {object} complaint 
-     * @param {string} username 
+     * @param {string} userId 
      * @returns {object} created complaint
      */
-    async create(complaint, username) {
+    async create(complaint, userId) {
         complaint.creationDate = new Date();
-        complaint.createdBy = username;
+        complaint.createdBy = userId;
         complaint.id = uuidv1();
 
         this._dataDict[complaint.id] = complaint;

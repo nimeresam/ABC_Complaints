@@ -9,7 +9,7 @@ router.post('/login/:role', (req, res) => {
     let role = req.params.role;
     users.login(body)
         .then(user => {
-            let token = createToken({ username: user.name, role });
+            let token = createToken({ user_id: user.id, user_role: role });
             res.send({ token, user });
         })
         .catch(err => {
@@ -22,7 +22,7 @@ router.post('/register/:role', (req, res) => {
     let role = req.params.role;
     users.register(body, role)
         .then(user => {
-            let token = createToken({ username: user.name, role });
+            let token = createToken({ user_id: user.id, user_role: role });
             res.send({ token, user });
         })
         .catch(err => {

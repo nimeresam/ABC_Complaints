@@ -89,4 +89,22 @@ export class ClientComponent implements OnInit, AfterViewInit {
     })
   }
 
+  /**
+   * delete complaint from database
+   */
+   deleteComplaint(index: number) {
+    let complaint = this.list[index];
+    if(confirm('Are you sure?') == false) return;
+    this.complaintsService.deleteById(complaint.id).subscribe(
+      res => {
+        this.list.splice(index, 1);
+        this.updateDataSource();
+      },
+      err => {
+        // inform user
+        this.snackBar.open('Failed to delete complaint.', 'OK');
+      }
+    )
+  }
+
 }

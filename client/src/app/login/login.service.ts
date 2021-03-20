@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { IUser } from '../utility/models/user.interface';
 import { ILogin } from './models/login.interface';
+import { ILoginResponse } from './models/response.interface';
 
 @Injectable()
 export class LoginService {
@@ -11,11 +13,11 @@ export class LoginService {
     private http: HttpClient
   ) { }
 
-  login(role: string, value: ILogin) {
-    return this.http.post(`/login/${role}`, value);
+  login(role: string, value: ILogin) : Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(`/login/${role}`, value);
   }
 
-  register(role: string, value: IUser) {
-    return this.http.post(`/register/${role}`, value);
+  register(role: string, value: IUser) : Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(`/register/${role}`, value);
   }
 }

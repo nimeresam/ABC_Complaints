@@ -66,7 +66,6 @@ export class AdminComponent implements OnInit, AfterViewInit {
    */
   update(index: number) {
     let complaint = this.list[index];
-    console.log(complaint)
     this.dialog.open(ComplaintDialogComponent, {
       width: '750px',
       data: complaint

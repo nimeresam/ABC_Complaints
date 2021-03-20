@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
+import { IAuthKeys } from '../utility/models/auth.enum';
 import { LoginService } from './login.service';
+import { ILoginError, ILoginResponse } from './models/response.interface';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     formBuilder: FormBuilder,
-    private service: LoginService
+    private service: LoginService,
+    private router: Router
   ) {
     // to determine form group to use
     this.action = 'sign in';
@@ -56,20 +61,33 @@ export class LoginComponent implements OnInit {
    */
   submit() {
     let subject: Observable<any>;
+    let form: FormGroup;
     // determine which API to use
     switch(this.action) {
       case 'sign in':
+        form = this.loginForm;
         subject = this.service.login(this.role, this.loginForm.value);
+        break;
       case 'register':
+        form = this.registerForm;
         subject = this.service.register(this.role, this.registerForm.value);
+        break;
     }
     // call API and wait data
     subject.subscribe(
-      res => {
-
+      (res: ILoginResponse) => {
+        console.log(res);
+        localStorage.setItem(IAuthKeys.TOKEN, res.token);
+        localStorage.setItem(IAuthKeys.NAME, res.user.name);
+        localStorage.setItem(IAuthKeys.ROLE, res.user.role);
+        this.router.navigate([`../`])
       },
-      err => {
-        
+      (err: ILoginError) => {
+        console.log(err);
+        if (typeof err == 'object') {
+          let control = form.controls[err.control];
+          if (control) control.setErrors({ backend: err.message });
+        }
       }
     )
   }

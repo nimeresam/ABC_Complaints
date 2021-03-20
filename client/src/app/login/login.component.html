@@ -9,6 +9,8 @@
                     <mat-label>Email</mat-label>
                     <input matInput required placeholder="user@example.com" type="email" formControlName="email">
                     <mat-icon matPrefix>email</mat-icon>
+                    <mat-error *ngIf="loginForm.controls.email.errors?.backend"> {{
+                        loginForm.controls.email.errors?.backend }} </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
@@ -16,6 +18,8 @@
                     <mat-icon matPrefix> {{showPassword? 'lock_open': 'lock'}} </mat-icon>
                     <mat-icon matSuffix color="primary" style="cursor: pointer;" (click)="showPassword = !showPassword">
                         {{showPassword? 'visibility_off': 'visibility'}} </mat-icon>
+                    <mat-error *ngIf="loginForm.controls.password.errors?.backend"> {{
+                        loginForm.controls.password.errors?.backend }} </mat-error>
                 </mat-form-field>
                 <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
                     Submit
@@ -37,6 +41,8 @@
                     <mat-label>Email</mat-label>
                     <input matInput required placeholder="user@example.com" type="email" formControlName="email">
                     <mat-icon matPrefix>email</mat-icon>
+                    <mat-error *ngIf="registerForm.controls.email.errors?.backend"> {{
+                        registerForm.controls.email.errors?.backend }} </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>

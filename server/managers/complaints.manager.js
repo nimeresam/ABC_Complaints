@@ -20,6 +20,7 @@ class Complaints {
     }
 
     /**
+     * @async 
      * create or update complaint
      * @param {object} complaint 
      * @returns {object} updated complaint
@@ -37,6 +38,7 @@ class Complaints {
     }
 
     /**
+     * @async 
      * create new complaint
      * @param {object} complaint 
      * @param {string} username 
@@ -53,13 +55,14 @@ class Complaints {
     }
 
     /**
+     * @async 
      * remove complaint by id
      * @param {string} id 
      */
     async delete(id) {
         if (this._dataDict[id] == undefined) throw new Error(`No Complaint found with id: ${complaint.id}`);
         var complaint = this._dataDict[id];
-        var index = this._dataDict._list.findIndex(complaint);
+        let index = this._dataDict._list.indexOf(complaint);
         this._dataDict._list.splice(index, 1);
         delete this._dataDict[id];
     }

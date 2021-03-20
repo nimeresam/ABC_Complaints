@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CoreModule } from '../core/core.module';
+
 import { UtilityModule } from '../utility/utility.module';
 
 import { ClientRoutingModule } from './client-routing.module';
@@ -16,8 +16,7 @@ import { ComplaintInfoComponent } from './complaint-info/complaint-info.componen
   ],
   imports: [
     UtilityModule,
-    ClientRoutingModule,
-    CoreModule
+    ClientRoutingModule
   ],
   entryComponents: [
     ComplaintDialogComponent,

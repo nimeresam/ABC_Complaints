@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
+import { IAuthKeys } from '../utility/models/auth.enum';
 
 
 @Injectable()
-export class PageAuthorizationService implements CanActivate {
+export class AuthorizationService implements CanActivate {
+  
+  constructor(private router: Router) { }
+
   /** 
    * Check if current user is authorized for this route
    * @returns {boolean} Authorized user or not */
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    return true;
+  canActivate(): boolean {
+    // check if user can access this page
+    let page = location.pathname.split('/')[1] || 'client';
+    let role = localStorage.getItem(IAuthKeys.ROLE);
+    if (page != role) {
+      setTimeout(() => this.router.navigate(['/' + role]))
+    }
+    return page == 'login' || page != role;
   }
 }

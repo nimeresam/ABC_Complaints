@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { PageAuthorizationService } from './authorization.service';
+import { AuthorizationService } from './authorization.service';
 import { AuthenticationService } from './authentication.service';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { UtilityModule } from '../utility/utility.module';
@@ -14,7 +14,7 @@ import { UtilityModule } from '../utility/utility.module';
     UtilityModule
   ],
   providers: [
-    PageAuthorizationService,
+    AuthorizationService,
     AuthenticationService
   ]
 })
@@ -25,7 +25,7 @@ export class CoreModule {
       providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         // { provide: HTTP_INTERCEPTORS, useClass: EskaLoggingInterceptor, multi: true },
-        PageAuthorizationService,
+        AuthorizationService,
         AuthenticationService
       ]
     };

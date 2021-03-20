@@ -40,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         localStorage.clear();
                         sessionStorage.clear();
                         // TODO: 
-                        this.router.navigateByUrl('/login');
+                        this.router.navigateByUrl('/admin/portal');
                     }
                     // hide progress bar
                     this.loader.hide();

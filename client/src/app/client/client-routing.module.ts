@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthorizationService } from '../core/authorization.service';
 import { ClientComponent } from './client.component';
 
 const routes: Routes = [
   {
-    path: 'portal',
-    component: ClientComponent
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
-  },
-  {
     path: '',
-    redirectTo: 'portal',
-    pathMatch: 'full'
-  }
+    component: ClientComponent,
+    canActivate: [AuthorizationService]
+  },
+  // {
+  //   path: '',
+  //   redirectTo: 'portal',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

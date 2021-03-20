@@ -26,10 +26,15 @@ export class LoginComponent implements OnInit {
     private service: LoginService,
     private router: Router
   ) {
+    if (localStorage.getItem(IAuthKeys.TOKEN)) {
+      let role = localStorage.getItem(IAuthKeys.ROLE);
+      if (!role) localStorage.clear();
+      else this.router.navigate(['/' + localStorage.getItem(IAuthKeys.ROLE)])
+    }
     // to determine form group to use
     this.action = 'sign in';
     // to save user role
-    this.role = <'client' | 'admin'>location.pathname.split('/')[1];
+    this.role = <'client' | 'admin'> sessionStorage.getItem(IAuthKeys.MAIN_ROLE) || 'client';
 
     this.loginForm = formBuilder.group({
       email: ['', Validators.required],
@@ -76,15 +81,14 @@ export class LoginComponent implements OnInit {
     // call API and wait data
     subject.subscribe(
       (res: ILoginResponse) => {
-        console.log(res);
         localStorage.setItem(IAuthKeys.TOKEN, res.token);
         localStorage.setItem(IAuthKeys.NAME, res.user.name);
         localStorage.setItem(IAuthKeys.ROLE, res.user.role);
-        this.router.navigate([`../`])
+        this.router.navigate(['/' + this.role]);
+        sessionStorage.removeItem(IAuthKeys.MAIN_ROLE);
       },
       (err: ILoginError) => {
-        console.log(err);
-        if (typeof err == 'object') {
+        if (err && typeof err == 'object') {
           let control = form.controls[err.control];
           if (control) control.setErrors({ backend: err.message });
         }

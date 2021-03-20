@@ -21,10 +21,6 @@
                 <span class="value">{{ data.status | titlecase }}</span>
             </div>
             <div class="row info-line">
-                <span class="label">Action by</span>
-                <span class="value">{{data.changedBy || 'N/A'}}</span>
-            </div>
-            <div class="row info-line">
                 <span class="label">Action Date</span>
                 <span class="value">{{ data.changeDate? (data.changeDate | date : 'MMM dd, yyyy hh:mm'): 'N/A' }}</span>
             </div>

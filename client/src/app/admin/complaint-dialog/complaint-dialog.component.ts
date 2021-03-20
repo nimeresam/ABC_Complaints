@@ -1,10 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { STATUS } from 'src/app/utility/models/status.enum';
-import { ComplaintsService } from 'src/app/utility/services/complaints.service';
 
+import { STATUS } from '../../utility/models/status.enum';
+import { IUser } from '../../utility/models/user.interface';
+import { ComplaintsService } from '../../utility/services/complaints.service';
 import { IComplaint } from '../../utility/models/complaint.interface';
+import { UsersService } from '../../utility/services/users.service';
 
 @Component({
   selector: 'admin-complaint-dialog',
@@ -15,18 +17,27 @@ export class ComplaintDialogComponent implements OnInit {
 
   complaintForm: FormGroup;
   statusList: STATUS[];
+  client: IUser;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IComplaint,
     formBuilder: FormBuilder,
+    userService: UsersService,
     private dialogRef: MatDialogRef<ComplaintDialogComponent>,
-    private complaintsService: ComplaintsService
+    private complaintsService: ComplaintsService,
   ) { 
     this.complaintForm = formBuilder.group({
       status: [ , Validators.required],
       notes:  ['']
     });
-
+    debugger;
+    // get client details to show his name
+    userService.getById(this.data.createdBy).subscribe(
+      (res: IUser) => {
+        debugger;
+        this.client = res
+      }
+    );
     this.complaintForm.patchValue(data);
 
     this.statusList = Object.values(STATUS);

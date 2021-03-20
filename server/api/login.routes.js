@@ -4,12 +4,11 @@ const express = require('express'),
 const users = new (require('../managers/users.manager'))();
 const { createToken } = require('../auth');
 
-router.post('/login/:role', (req, res) => {
+router.post('/login', (req, res) => {
     let { body } = req;
-    let role = req.params.role;
     users.login(body)
         .then(user => {
-            let token = createToken({ user_id: user.id, user_role: role });
+            let token = createToken({ user_id: user.id, user_role: user.role });
             res.send({ token, user });
         })
         .catch(err => {
@@ -17,12 +16,11 @@ router.post('/login/:role', (req, res) => {
         })
 });
 
-router.post('/register/:role', (req, res) => {
+router.post('/register', (req, res) => {
     let { body } = req;
-    let role = req.params.role;
-    users.register(body, role)
+    users.register(body)
         .then(user => {
-            let token = createToken({ user_id: user.id, user_role: role });
+            let token = createToken({ user_id: user.id, user: user.role });
             res.send({ token, user });
         })
         .catch(err => {

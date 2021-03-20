@@ -17,10 +17,10 @@ export class UsersService {
 
   /**
    * Get user document based on it's id
-   * @param {string} username 
+   * @param {string} userId 
    * @returns {Observable<IUser>} 
    */
-  getById(username: string): Observable<IUser> {
-    return this.http.delete<IUser>(`${this.link}/${username}`);
+  getById(userId: string): Observable<IUser> {
+    return this.http.get<IUser>(`${this.link}/${userId}`);
   }
 }

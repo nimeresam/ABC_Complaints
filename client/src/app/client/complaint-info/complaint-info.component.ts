@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IComplaint } from 'src/app/utility/models/complaint.interface';
+
+import { IComplaint } from '../../utility/models/complaint.interface';
 
 @Component({
   selector: 'app-complaint-info',
@@ -11,7 +12,7 @@ export class ComplaintInfoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IComplaint
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
   }

@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
@@ -9,7 +10,7 @@ app.use(bodyParser.json());
 app.use(require('cors')());
 
 // serve the angular app
-// app.use(express.static(path.join(__dirname + '\\client\\dist')));
+app.use(express.static(path.join(__dirname + '\\client\\dist\\client')));
 
 const auth = require('./server/auth');
 

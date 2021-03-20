@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(
     formBuilder: FormBuilder,
     private service: LoginService,
-    private router: Router
+    private router: Router,
+    private snackbar: MatSnackBar
   ) {
     if (localStorage.getItem(IAuthKeys.TOKEN)) {
       let role = localStorage.getItem(IAuthKeys.ROLE);
@@ -71,11 +73,11 @@ export class LoginComponent implements OnInit {
     switch(this.action) {
       case 'sign in':
         form = this.loginForm;
-        subject = this.service.login(this.role, this.loginForm.value);
+        subject = this.service.login(this.loginForm.value);
         break;
       case 'register':
         form = this.registerForm;
-        subject = this.service.register(this.role, this.registerForm.value);
+        subject = this.service.register(this.registerForm.value);
         break;
     }
     // call API and wait data
@@ -84,13 +86,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem(IAuthKeys.TOKEN, res.token);
         localStorage.setItem(IAuthKeys.NAME, res.user.name);
         localStorage.setItem(IAuthKeys.ROLE, res.user.role);
-        this.router.navigate(['/' + this.role]);
+        this.router.navigate(['/' + res.user.role]);
         sessionStorage.removeItem(IAuthKeys.MAIN_ROLE);
       },
       (err: ILoginError) => {
         if (err && typeof err == 'object') {
           let control = form.controls[err.control];
           if (control) control.setErrors({ backend: err.message });
+          else this.snackbar.open(err.message, 'OK');
         }
       }
     )

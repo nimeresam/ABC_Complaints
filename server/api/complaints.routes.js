@@ -8,7 +8,9 @@ const link = '/complaints';
 router.get(link, (req, res) => {
     complaints.get(req.user_id, req.user_role).
         then(result => res.send(result))
-        .catch(error => res.status(501).send(error));
+        .catch(error => {
+            res.status(501).send(error)
+        });
 });
 
 router.post(link, (req, res) => {

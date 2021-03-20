@@ -13,11 +13,11 @@ export class LoginService {
     private http: HttpClient
   ) { }
 
-  login(role: string, value: ILogin) : Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>(`/login/${role}`, value);
+  login(value: ILogin) : Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(`/login`, value);
   }
 
-  register(role: string, value: IUser) : Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>(`/register/${role}`, value);
+  register(value: IUser) : Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>(`/register`, value);
   }
 }

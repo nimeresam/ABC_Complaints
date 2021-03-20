@@ -64,6 +64,7 @@ class Complaints {
     async delete(id) {
         if (this._dataDict[id] == undefined) throw new Error(`No Complaint found with id: ${complaint.id}`);
         var complaint = this._dataDict[id];
+        // remove complaint from list also
         let index = this._dataDict._list.indexOf(complaint);
         this._dataDict._list.splice(index, 1);
         delete this._dataDict[id];

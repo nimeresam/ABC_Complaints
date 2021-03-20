@@ -35,4 +35,21 @@ export class ComplaintDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * save complaint to the database
+   */
+   save() {
+    let value = this.complaintForm.value;
+    // check if nothing changed 
+    if (value.status == this.data.status && value.notes == this.data.notes) return this.dialogRef.close();
+    // add other properties in data object
+    value = Object.assign({}, this.data, value);
+    this.complaintsService.update(value).subscribe(
+      res => this.dialogRef.close(res),
+      err => {
+        // TODO: show error
+      }
+    )
+  }
+
 }

@@ -65,7 +65,8 @@ export class AdminComponent implements OnInit, AfterViewInit {
    * @param {number} index of complaint (index user to relect changes after saving)
    */
   update(index: number) {
-    let complaint = this.dataSource[index];
+    let complaint = this.list[index];
+    console.log(complaint)
     this.dialog.open(ComplaintDialogComponent, {
       width: '750px',
       data: complaint

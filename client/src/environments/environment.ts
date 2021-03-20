@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_href: 'http://localhost:2021'
+  base_href: 'http://localhost:2021/api'
 };
 
 /*

@@ -15,7 +15,6 @@ export class AuthInterceptor implements HttpInterceptor {
         private router: Router,
         private loader: LoaderService,
         private snakeBar: MatSnackBar,
-        @Inject('BASE_API_URL') private apiHost: string
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any> | any> {
@@ -25,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
         var cloned = req.clone({ url: prefix + req.url })
 
         if (idToken != null) cloned = cloned.clone({ headers: req.headers.set("Authorization", `Bearer ${idToken}`) });
-
+        debugger;
         this.loader.show();
 
         return next.handle(cloned).pipe(
@@ -41,6 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     if (err instanceof HttpErrorResponse && err.status == 401) {
                         localStorage.clear();
                         sessionStorage.clear();
+                        // TODO: 
                         this.router.navigateByUrl('/login');
                     }
                     // hide progress bar

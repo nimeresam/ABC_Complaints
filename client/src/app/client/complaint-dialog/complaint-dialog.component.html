@@ -13,5 +13,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close style="margin-left: auto;">Cancel</button>
-  <button mat-raised-button [mat-dialog-close]="complaintForm.value" color="primary" [disabled]="complaintForm.invalid">Save</button>
+  <button mat-raised-button color="primary" [disabled]="complaintForm.invalid" (click)="save()">Save</button>
 </div>

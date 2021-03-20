@@ -12,7 +12,7 @@
             </div>
             <div class="row info-line">
                 <span class="label">Date</span>
-                <span class="value">{{data.creationDate | date }}</span>
+                <span class="value">{{data.creationDate | date : 'MMM dd, yyyy hh:mm' }}</span>
             </div>
         </div>
         <div class="col w-50" style="margin-right: 12px;">
@@ -26,7 +26,7 @@
             </div>
             <div class="row info-line">
                 <span class="label">Action Date</span>
-                <span class="value">{{ data.changeDate? (data.changeDate | date): 'N/A' }}</span>
+                <span class="value">{{ data.changeDate? (data.changeDate | date : 'MMM dd, yyyy hh:mm'): 'N/A' }}</span>
             </div>
             <div class="row info-line">
                 <span class="label">Notes</span>

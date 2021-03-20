@@ -24,12 +24,21 @@ export class ComplaintsService {
   }
 
   /**
-   * insert or udpate complaint
+   * insert new complaint
    * @param {IComplaint} complaint 
    * @returns {Observable<IComplaint>} complaint with id and meta properties
    */
-  upsert(complaint: IComplaint): Observable<IComplaint> {
+  create(complaint: IComplaint): Observable<IComplaint> {
     return this.http.post<IComplaint>(this.link, complaint);
+  }
+
+  /**
+   * update complaint
+   * @param {IComplaint} complaint 
+   * @returns {Observable<IComplaint>} complaint with id and meta properties
+   */
+  update(complaint: IComplaint): Observable<IComplaint> {
+    return this.http.put<IComplaint>(this.link, complaint);
   }
 
   /**

@@ -1,4 +1,4 @@
-const uuidv1 = require('uuid/v1');
+const { v1: uuidv1 } = require('uuid');
 
 class Complaints {
 
@@ -16,7 +16,7 @@ class Complaints {
      * @returns 
      */
     async get() {
-        return this._dataMap._list;
+        return this._dataDict._list;
     }
 
     /**
@@ -45,7 +45,7 @@ class Complaints {
     async create(complaint, username) {
         complaint.creationDate = new Date();
         complaint.createdBy = username;
-        complaint.id = new uuidv1();
+        complaint.id = uuidv1();
 
         this._dataDict[complaint.id] = complaint;
         this._dataDict._list.push(complaint);

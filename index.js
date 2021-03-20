@@ -13,10 +13,12 @@ app.use(express.static(path.join(__dirname + '\\client\\dist')));
 
 const auth = require('./server/auth');
 
-// app.use('/api', 
-    // auth.verifyToken
-    // require('')
-    // );
+app.use('/api', 
+    require('./server/api/login.routes'),
+    auth.verifyToken,
+    require('./server/api/complaints.routes'),
+    require('./server/api/users.routes')
+    );
 
 var server = require('http').createServer(app);
 

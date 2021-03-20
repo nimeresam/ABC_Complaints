@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { LoaderService } from './services/loader.service';
+// modules
 import { MaterialModule } from './material/material.module';
+// components
 import { BaseToolbarComponent } from './components/base-toolbar/base-toolbar.component';
+// pipes
 import { StatusColorPipe } from './pipes/status-color.pipe';
+// services
+import { LoaderService } from './services/loader.service';
+import { UsersService } from './services/users.service';
+import { ComplaintsService } from './services/complaints.service';
 
 
 @NgModule({
@@ -30,7 +35,9 @@ import { StatusColorPipe } from './pipes/status-color.pipe';
     StatusColorPipe
   ],
   providers: [
-    LoaderService
+    LoaderService,
+    UsersService,
+    ComplaintsService
   ]
 })
 export class UtilityModule { }

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { IUser } from '../utility/models/user.interface';
 import { ILogin } from './models/login.interface';
-import { IRegister } from './models/register.interface';
 
 @Injectable()
 export class LoginService {
@@ -15,7 +15,7 @@ export class LoginService {
     return this.http.post(`/login/${role}`, value);
   }
 
-  register(role: string, value: IRegister) {
+  register(role: string, value: IUser) {
     return this.http.post(`/register/${role}`, value);
   }
 }

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { STATUS } from 'src/app/utility/models/status.enum';
+import { ComplaintsService } from 'src/app/utility/services/complaints.service';
 
 import { IComplaint } from '../../utility/models/complaint.interface';
 
@@ -18,7 +19,8 @@ export class ComplaintDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IComplaint,
     formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<ComplaintDialogComponent>
+    private dialogRef: MatDialogRef<ComplaintDialogComponent>,
+    private complaintsService: ComplaintsService
   ) { 
     this.complaintForm = formBuilder.group({
       status: [ , Validators.required],
